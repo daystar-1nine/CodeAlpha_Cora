@@ -10,9 +10,9 @@ import Link from "next/link";
 
 const MODULES = [
   { id: "standard", title: "Standard Calculator", desc: "Basic arithmetic and everyday calculations.", icon: Calculator, href: "/workspace/standard" },
-  { id: "graph", title: "Graphing Engine", desc: "Plot complex functions in 2D and 3D space.", icon: LineChart, href: "/workspace/graph" },
-  { id: "vector", title: "Vector Algebra", desc: "Compute cross products, dot products and magnitudes.", icon: MoveRight, href: "/workspace/vector" },
-  { id: "formulas", title: "Formula Library", desc: "Access hundreds of scientific and financial formulas.", icon: BookOpen, href: "/workspace/formulas" },
+  { id: "graphing", title: "Graphing Engine", desc: "Plot complex functions in 2D and 3D space.", icon: LineChart, href: "/workspace/graphing" },
+  { id: "matrix", title: "Matrix Algebra", desc: "Compute cross products, dot products and magnitudes.", icon: MoveRight, href: "/workspace/matrix" },
+  { id: "library", title: "Formula Library", desc: "Access hundreds of scientific and financial formulas.", icon: BookOpen, href: "/workspace/library" },
 ];
 
 export default function WorkspaceDashboard() {
