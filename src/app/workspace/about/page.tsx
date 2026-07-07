@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Info } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -10,8 +11,8 @@ export default function AboutPage() {
       </div>
 
       <div className="bg-surface/30 border border-border-default rounded-xl p-8 flex flex-col items-center justify-center text-center">
-        <div className="w-20 h-20 bg-primary/20 text-primary border border-primary/30 rounded-2xl flex items-center justify-center mb-6 text-3xl font-bold font-display shadow-lg shadow-primary/20">
-          C
+        <div className="w-20 h-20 rounded-xl overflow-hidden flex items-center justify-center bg-black border border-border-default mb-6">
+          <Image src="/logo.png" alt="Cora Logo" width={80} height={80} className="object-cover" />
         </div>
         <h3 className="text-xl font-medium text-text-primary">Cora Workspace</h3>
         <p className="text-sm text-text-muted mt-2 mb-6">Version 1.0.0 (Production Release)</p>

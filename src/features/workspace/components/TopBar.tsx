@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { PanelLeft, Search, Moon, Sun, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import Image from "next/image";
 
 export function TopBar() {
   const { toggleSidebar, toggleCommandPalette } = useWorkspaceStore();
@@ -24,8 +25,8 @@ export function TopBar() {
         </Button>
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           {/* Subtle Cora Logo */}
-          <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-text-secondary flex items-center justify-center">
-            <span className="text-primary-foreground font-display font-bold text-xs">C</span>
+          <div className="w-6 h-6 rounded overflow-hidden flex items-center justify-center bg-black">
+            <Image src="/logo.png" alt="Cora" width={24} height={24} className="object-cover" />
           </div>
           <span className="font-display font-semibold text-sm tracking-wide hidden sm:block">Cora Workspace</span>
         </Link>
