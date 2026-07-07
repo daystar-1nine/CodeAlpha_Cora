@@ -27,7 +27,7 @@ export function CommandPalette() {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-modal flex items-start justify-center pt-[15vh]">
+      <div className="fixed inset-0 z-modal flex items-start justify-center md:pt-[15vh]">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -43,7 +43,7 @@ export function CommandPalette() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -20 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-2xl bg-surface/90 backdrop-blur-xl border border-border-strong rounded-xl shadow-elevated overflow-hidden flex flex-col"
+          className="relative w-full h-full md:h-auto md:max-w-2xl bg-surface/90 backdrop-blur-xl border-0 md:border border-border-strong rounded-none md:rounded-xl shadow-elevated overflow-hidden flex flex-col"
         >
           {/* Input */}
           <div className="flex items-center px-4 py-3 border-b border-border-default">
@@ -61,7 +61,7 @@ export function CommandPalette() {
           </div>
 
           {/* Results Area */}
-          <div className="max-h-[60vh] overflow-y-auto no-scrollbar py-2">
+          <div className="flex-1 md:max-h-[60vh] overflow-y-auto no-scrollbar py-2">
             <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-text-muted">
               Suggestions
             </div>

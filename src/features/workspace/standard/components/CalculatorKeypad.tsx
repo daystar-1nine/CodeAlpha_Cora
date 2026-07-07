@@ -19,7 +19,7 @@ export function CalculatorKeypad() {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-4 gap-2 md:gap-4 flex-1">
+      <div className="grid grid-cols-4 auto-rows-fr gap-2 md:gap-4 flex-1 min-h-0">
         {/* Row 1 */}
         <CalculatorButton variant="action" label="C" onClick={clear} className="text-danger hover:text-danger hover:bg-danger/10" />
         <CalculatorButton variant="action" label="()" onClick={() => append("(")} />

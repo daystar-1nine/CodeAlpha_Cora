@@ -25,7 +25,7 @@ export function LibrarySidebar({ activeCategory, setActiveCategory, searchQuery,
   ];
 
   return (
-    <div className="w-full h-full flex flex-col bg-surface/30 backdrop-blur-md border-r border-border-default">
+    <div className="w-full h-full flex flex-col xl:border-r border-border-default bg-surface/30 backdrop-blur-md">
       <div className="p-4 border-b border-border-default shrink-0 space-y-4">
         <h3 className="font-display font-medium text-text-primary flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-primary" />
@@ -44,23 +44,25 @@ export function LibrarySidebar({ activeCategory, setActiveCategory, searchQuery,
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar p-4 space-y-2">
-        <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 px-2">Categories</h4>
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setActiveCategory(cat.id)}
-            className={cn(
-              "w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all flex items-center gap-3",
-              activeCategory === cat.id 
-                ? "bg-primary/10 border border-primary/20 text-primary shadow-sm font-medium" 
-                : "border border-transparent text-text-secondary hover:bg-white/5 hover:text-text-primary"
-            )}
-          >
-            {cat.icon}
-            <span>{cat.id}</span>
-          </button>
-        ))}
+      <div className="flex-none xl:flex-1 overflow-x-auto xl:overflow-y-auto no-scrollbar p-4 xl:space-y-2 border-b xl:border-b-0 border-border-default">
+        <h4 className="hidden xl:block text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 px-2">Categories</h4>
+        <div className="flex xl:flex-col gap-2 xl:gap-0">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={cn(
+                "whitespace-nowrap flex-shrink-0 xl:w-full text-left px-4 py-2 xl:px-3 xl:py-2.5 rounded-full xl:rounded-lg text-sm transition-all flex items-center gap-3",
+                activeCategory === cat.id 
+                  ? "bg-primary/10 border border-primary/20 text-primary shadow-sm font-medium" 
+                  : "border border-border-default xl:border-transparent text-text-secondary hover:bg-white/5 hover:text-text-primary bg-surface/50 xl:bg-transparent"
+              )}
+            >
+              {cat.icon}
+              <span>{cat.id}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

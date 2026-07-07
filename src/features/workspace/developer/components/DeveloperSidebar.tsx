@@ -32,10 +32,10 @@ export function DeveloperSidebar() {
         </h3>
       </div>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar p-4 space-y-8">
+      <div className="flex-none xl:flex-1 overflow-x-auto xl:overflow-y-auto no-scrollbar p-4 flex flex-row xl:flex-col gap-8 xl:space-y-0">
         
         {/* Base Selection */}
-        <div>
+        <div className="shrink-0 min-w-[200px] xl:min-w-0">
           <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
             <Binary className="w-3 h-3" /> Base
           </h4>
@@ -59,7 +59,7 @@ export function DeveloperSidebar() {
         </div>
 
         {/* Word Size */}
-        <div>
+        <div className="shrink-0 min-w-[200px] xl:min-w-0">
           <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
             <Settings2 className="w-3 h-3" /> Word Size
           </h4>
@@ -82,7 +82,7 @@ export function DeveloperSidebar() {
         </div>
 
         {/* Signed / Unsigned */}
-        <div>
+        <div className="shrink-0 min-w-[200px] xl:min-w-0">
            <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 px-2">Data Type</h4>
            <div className="flex bg-void/50 rounded-lg p-1 border border-border-default">
              <button

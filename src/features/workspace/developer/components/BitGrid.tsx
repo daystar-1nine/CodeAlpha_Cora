@@ -17,8 +17,8 @@ export function BitGrid() {
   }
 
   return (
-    <div className="w-full bg-void/50 border border-border-default rounded-xl p-6 font-mono">
-      <div className="flex flex-col gap-6">
+    <div className="w-full bg-void/50 border border-border-default rounded-xl p-4 md:p-6 font-mono overflow-x-auto no-scrollbar">
+      <div className="flex flex-col gap-6 min-w-max">
         {rowChunks.map((chunk, rowIndex) => (
           <div key={rowIndex} className="flex flex-col gap-2">
             <div className="flex justify-between px-1 text-[10px] text-text-muted font-bold tracking-widest">

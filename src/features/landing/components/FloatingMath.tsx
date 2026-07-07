@@ -25,9 +25,11 @@ interface MathObject {
 export function FloatingMath() {
   const groupRef = useRef<THREE.Group>(null);
 
-  // Procedural generation of 100 mathematical objects
+  // Procedural generation of mathematical objects
   const objects: MathObject[] = useMemo(() => {
-    return Array.from({ length: 100 }).map((_, i) => ({
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const count = isMobile ? 30 : 100;
+    return Array.from({ length: count }).map((_, i) => ({
       id: i,
       symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
       // Orbit radius (from center of black hole)

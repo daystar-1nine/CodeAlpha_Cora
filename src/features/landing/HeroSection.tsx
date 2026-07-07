@@ -113,9 +113,9 @@ export function HeroSection() {
       <Container className="relative z-docked h-full flex flex-col justify-center pointer-events-none">
         
         {/* Typographic Hero */}
-        <div className="max-w-3xl mt-20 md:mt-0">
+        <div className="max-w-3xl mt-24 md:mt-0 px-4 md:px-0">
           <motion.h1 
-            className="flex flex-col text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter"
+            className="flex flex-col text-[12vw] leading-none md:text-7xl lg:text-8xl font-display font-bold tracking-tighter"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -151,15 +151,15 @@ export function HeroSection() {
             variants={btnVariants}
             initial="hidden"
             animate="visible"
-            className="mt-10 flex flex-wrap gap-4 pointer-events-auto"
+            className="mt-10 flex flex-col md:flex-row flex-wrap gap-4 pointer-events-auto"
           >
-            <Link href="/workspace">
-              <Button size="lg" className="shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-shadow text-black font-semibold px-8 border-none bg-white hover:bg-white/90">
+            <Link href="/workspace" className="w-full md:w-auto">
+              <Button size="lg" className="w-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-shadow text-black font-semibold px-8 border-none bg-white hover:bg-white/90">
                 Launch Cora
               </Button>
             </Link>
-            <Link href="/workspace/about">
-              <Button variant="outline" size="lg" className="border-white/20 text-white bg-white/5 backdrop-blur-md hover:bg-white/10 px-8 transition-colors">
+            <Link href="/workspace/about" className="w-full md:w-auto">
+              <Button variant="outline" size="lg" className="w-full border-white/20 text-white bg-white/5 backdrop-blur-md hover:bg-white/10 px-8 transition-colors">
                 Explore Workspace
               </Button>
             </Link>

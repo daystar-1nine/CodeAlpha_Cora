@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import { motion } from "framer-motion";
 import { Settings as SettingsIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -10,7 +11,13 @@ export default function SettingsPage() {
   const [animations, setAnimations] = React.useState(true);
 
   return (
-    <div className="w-full h-full max-w-2xl mx-auto flex flex-col pt-16 px-6">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="w-full h-full max-w-2xl mx-auto flex flex-col pt-8 md:pt-16 px-4 md:px-6 bg-surface/50 md:bg-transparent backdrop-blur-md rounded-t-3xl md:rounded-none shadow-[0_-10px_40px_rgba(0,0,0,0.2)] md:shadow-none border-t md:border-none border-border-default mt-4 md:mt-0"
+    >
       <div className="flex items-center gap-3 mb-8">
         <SettingsIcon className="w-6 h-6 text-primary" />
         <h2 className="text-2xl font-display font-medium text-text-primary">Settings</h2>
@@ -42,7 +49,7 @@ export default function SettingsPage() {
           onClick={() => setAnimations(!animations)} 
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

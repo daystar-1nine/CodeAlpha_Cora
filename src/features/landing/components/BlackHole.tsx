@@ -8,6 +8,7 @@ export function BlackHole() {
   const coreRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
   const accretionRef = useRef<THREE.Mesh>(null);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
@@ -28,13 +29,13 @@ export function BlackHole() {
     <group position={[0, 0, -30]}>
       {/* Event Horizon (Pure Black Core) */}
       <mesh ref={coreRef}>
-        <sphereGeometry args={[4, 64, 64]} />
+        <sphereGeometry args={[4, isMobile ? 32 : 64, isMobile ? 32 : 64]} />
         <meshBasicMaterial color="#000000" />
       </mesh>
 
       {/* Gravitational Distortion Aura */}
       <mesh scale={1.1}>
-        <sphereGeometry args={[4, 64, 64]} />
+        <sphereGeometry args={[4, isMobile ? 32 : 64, isMobile ? 32 : 64]} />
         <MeshDistortMaterial
           color="#3b82f6"
           emissive="#3b82f6"
@@ -48,7 +49,7 @@ export function BlackHole() {
 
       {/* Accretion Disk */}
       <mesh ref={accretionRef} rotation={[Math.PI / 2.2, 0, 0]}>
-        <ringGeometry args={[5, 12, 128]} />
+        <ringGeometry args={[5, 12, isMobile ? 64 : 128]} />
         <meshStandardMaterial
           color="#8b5cf6"
           emissive="#8b5cf6"
@@ -62,7 +63,7 @@ export function BlackHole() {
 
       {/* Light Bending / Outer Energy Ring */}
       <mesh ref={ringRef}>
-        <torusGeometry args={[8, 0.1, 16, 100]} />
+        <torusGeometry args={[8, 0.1, isMobile ? 8 : 16, isMobile ? 50 : 100]} />
         <meshBasicMaterial
           color="#ec4899"
           transparent

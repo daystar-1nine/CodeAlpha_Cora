@@ -10,7 +10,7 @@ export function ScientificKeypad() {
   return (
     <div className="w-full flex-1 p-4 md:p-6 flex flex-col gap-2 md:gap-3">
       {/* Dense Scientific Grid */}
-      <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 md:gap-3 flex-1">
+      <div className="grid grid-cols-5 sm:grid-cols-7 auto-rows-fr gap-2 md:gap-3 flex-1 min-h-0">
         
         {/* Row 1 */}
         <CalculatorButton variant="action" label="2nd" onClick={() => {}} className="text-sm rounded-lg" />
@@ -65,15 +65,15 @@ export function ScientificKeypad() {
         <CalculatorButton variant="equals" label="=" onClick={calculate} className="text-lg rounded-lg hidden sm:flex" />
         
         {/* Mobile operators row */}
-        <div className="col-span-5 grid grid-cols-5 gap-2 sm:hidden mt-2">
+        <div className="col-span-5 grid grid-cols-5 auto-rows-fr gap-2 sm:hidden mt-1">
            <CalculatorButton variant="action" label="DEL" onClick={deleteLast} className="text-danger text-sm rounded-lg" />
            <CalculatorButton label="9" onClick={() => append("9")} className="text-lg rounded-lg" />
            <CalculatorButton label="6" onClick={() => append("6")} className="text-lg rounded-lg" />
            <CalculatorButton label="3" onClick={() => append("3")} className="text-lg rounded-lg" />
            <CalculatorButton variant="operator" label="+" onClick={() => append("+")} className="text-sm rounded-lg" />
         </div>
-        <div className="col-span-5 grid grid-cols-1 sm:hidden mt-1">
-           <CalculatorButton variant="equals" label="=" onClick={calculate} className="text-lg rounded-lg h-12" />
+        <div className="col-span-5 grid grid-cols-1 auto-rows-fr sm:hidden mt-1">
+           <CalculatorButton variant="equals" label="=" onClick={calculate} className="text-lg rounded-lg h-full min-h-[48px]" />
         </div>
       </div>
     </div>

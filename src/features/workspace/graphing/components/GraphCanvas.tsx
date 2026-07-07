@@ -11,6 +11,8 @@ export function GraphCanvas() {
   
   // Interaction state
   const isDragging = React.useRef(false);
+  const activePointers = React.useRef<Map<number, {x: number, y: number}>>(new Map());
+  const initialPinchDist = React.useRef<number | null>(null);
   const lastMousePos = React.useRef({ x: 0, y: 0 });
   const hoverPos = React.useRef<{x: number, y: number} | null>(null);
 
@@ -288,28 +290,53 @@ export function GraphCanvas() {
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {
-    isDragging.current = true;
-    lastMousePos.current = { x: e.clientX, y: e.clientY };
     if (canvasRef.current) canvasRef.current.setPointerCapture(e.pointerId);
+    activePointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (activePointers.current.size === 1) {
+      isDragging.current = true;
+      lastMousePos.current = { x: e.clientX, y: e.clientY };
+    } else if (activePointers.current.size === 2) {
+      isDragging.current = false;
+      const pts = Array.from(activePointers.current.values());
+      initialPinchDist.current = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+    }
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
 
-    if (isDragging.current) {
+    if (activePointers.current.has(e.pointerId)) {
+      activePointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    }
+
+    if (activePointers.current.size === 2 && initialPinchDist.current) {
+      // Pinch to zoom and pan
+      const pts = Array.from(activePointers.current.values());
+      const currentDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+      const zoomFactor = initialPinchDist.current / currentDist;
+      
+      const centerX = (pts[0].x + pts[1].x) / 2 - rect.left;
+      const centerY = (pts[0].y + pts[1].y) / 2 - rect.top;
+      
+      const { xMin, xMax, yMin, yMax } = useGraphStore.getState().viewport;
+      const mathX = xMin + (centerX / rect.width) * (xMax - xMin);
+      const mathY = yMax - (centerY / rect.height) * (yMax - yMin);
+      
+      zoom(zoomFactor > 1 ? 1.05 : 0.95, mathX, mathY); // Smooth zoom
+      initialPinchDist.current = currentDist;
+    } else if (isDragging.current && activePointers.current.size === 1) {
       const dx = e.clientX - lastMousePos.current.x;
       const dy = e.clientY - lastMousePos.current.y;
       
-      // Calculate pan as percentage of width/height
       const panDx = -dx / rect.width;
-      const panDy = dy / rect.height; // inverted y axis for math
+      const panDy = dy / rect.height; 
       
       pan(panDx, panDy);
       lastMousePos.current = { x: e.clientX, y: e.clientY };
       hoverPos.current = null;
     } else {
-      // Hover logic
       hoverPos.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top
@@ -318,11 +345,21 @@ export function GraphCanvas() {
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
-    isDragging.current = false;
+    activePointers.current.delete(e.pointerId);
+    if (activePointers.current.size === 0) {
+      isDragging.current = false;
+      initialPinchDist.current = null;
+    } else if (activePointers.current.size === 1) {
+      // Re-enable dragging for remaining pointer
+      isDragging.current = true;
+      const remaining = Array.from(activePointers.current.values())[0];
+      lastMousePos.current = remaining;
+    }
     if (canvasRef.current) canvasRef.current.releasePointerCapture(e.pointerId);
   };
 
-  const handlePointerLeave = () => {
+  const handlePointerLeave = (e: React.PointerEvent) => {
+    activePointers.current.delete(e.pointerId);
     isDragging.current = false;
     hoverPos.current = null;
   };

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, PerspectiveCamera, AdaptiveDpr, AdaptiveEvents } from "@react-three/drei";
 import { EffectComposer, Bloom, DepthOfField, Noise, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
@@ -23,6 +23,21 @@ function CameraRig() {
     state.camera.lookAt(0, 0, 0);
   });
   return null;
+  return null;
+}
+
+function MobileCameraSetup() {
+  const { camera } = useThree();
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      if (camera instanceof THREE.PerspectiveCamera) {
+        camera.fov = 65; // Wider FOV for mobile to show more of the scene
+        camera.position.z = 20; // Pull back slightly
+        camera.updateProjectionMatrix();
+      }
+    }
+  }, [camera]);
+  return null;
 }
 
 export function Scene() {
@@ -39,23 +54,26 @@ export function Scene() {
 
       <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={45} />
       <CameraRig />
+      <MobileCameraSetup />
 
       {/* Composition */}
+      {/* CosmicEnvironment */}
       <CosmicEnvironment />
       <BlackHole />
       <FloatingMath />
-      <PremiumCalculator />
+      {/* PremiumCalculator is very heavy, temporarily disabled to prevent WebGL crash */}
+      {/* <PremiumCalculator /> */}
 
       {/* Environment for realistic reflections on glass */}
       <Environment preset="city" />
 
-      {/* Cinematic Post-Processing */}
-      <EffectComposer multisampling={0}>
+      {/* Cinematic Post-Processing - Disabled to prevent WebGL context loss on some GPUs */}
+      {/* <EffectComposer multisampling={0}>
         <DepthOfField focusDistance={0.02} focalLength={0.15} bokehScale={2} height={480} />
         <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} opacity={1.5} />
         <Noise opacity={0.02} />
         <Vignette eskil={false} offset={0.1} darkness={1.1} />
-      </EffectComposer>
+      </EffectComposer> */}
     </Canvas>
   );
 }

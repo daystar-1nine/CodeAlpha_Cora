@@ -26,7 +26,7 @@ export function AnalyticsCharts() {
         
         {stats ? (
           <>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <StatCard label="Mean (μ)" value={stats.mean.toFixed(2)} />
               <StatCard label="Standard Dev (σ)" value={stats.popStdDev.toFixed(2)} />
               <StatCard label="Median" value={stats.median.toString()} />
@@ -83,8 +83,8 @@ export function AnalyticsCharts() {
         
         {reg ? (
           <>
-            <div className="grid grid-cols-2 gap-4">
-              <StatCard label="Equation" value={reg.equation} className="col-span-2 text-blue-400" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <StatCard label="Equation" value={reg.equation} className="sm:col-span-2 text-blue-400" />
               <StatCard label="Correlation (r)" value={reg.r.toFixed(4)} />
               <StatCard label="R² (Variance)" value={reg.r2.toFixed(4)} />
             </div>
@@ -141,10 +141,10 @@ export function AnalyticsCharts() {
       <div className="w-full h-full flex flex-col p-6 space-y-6 overflow-y-auto no-scrollbar">
         <h3 className="font-display text-xl text-primary font-medium">Loan Amortization</h3>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <StatCard label="Monthly EMI" value={`$${emi.toFixed(2)}`} className="text-danger" />
           <StatCard label="Total Interest" value={`$${totalInterest.toFixed(2)}`} />
-          <StatCard label="Total Payment" value={`$${totalPaid.toFixed(2)}`} className="col-span-2" />
+          <StatCard label="Total Payment" value={`$${totalPaid.toFixed(2)}`} className="sm:col-span-2" />
         </div>
 
         <div className="flex-1 min-h-[300px] w-full mt-6 bg-void/50 rounded-xl border border-border-default p-4">
@@ -181,8 +181,8 @@ export function AnalyticsCharts() {
       <div className="w-full h-full flex flex-col p-6 space-y-6 overflow-y-auto no-scrollbar">
         <h3 className="font-display text-xl text-primary font-medium">Compound Interest</h3>
         
-        <div className="grid grid-cols-2 gap-4">
-          <StatCard label="Future Value" value={`$${finalValue.toFixed(2)}`} className="col-span-2 text-green-400" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <StatCard label="Future Value" value={`$${finalValue.toFixed(2)}`} className="sm:col-span-2 text-green-400" />
           <StatCard label="Initial PV" value={`$${principal.toFixed(2)}`} />
           <StatCard label="Total Interest" value={`$${profit.toFixed(2)}`} />
         </div>

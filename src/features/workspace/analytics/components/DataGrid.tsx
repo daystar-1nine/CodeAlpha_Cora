@@ -35,8 +35,9 @@ export function DataGrid() {
           </div>
         </div>
 
+        <div className="flex-1 overflow-x-auto no-scrollbar flex flex-col">
         {/* Header */}
-        <div className="flex border-b border-border-strong bg-void/80 text-sm font-serif italic text-text-secondary">
+        <div className="flex border-b border-border-strong bg-void/80 text-sm font-serif italic text-text-secondary min-w-[300px]">
           <div className="w-12 border-r border-border-default flex items-center justify-center py-2 opacity-50">#</div>
           <div className="flex-1 border-r border-border-default flex items-center justify-center py-2 font-bold text-primary">X Values</div>
           {is2Var && (
@@ -46,7 +47,7 @@ export function DataGrid() {
         </div>
 
         {/* Rows */}
-        <div className="flex-1 overflow-y-auto no-scrollbar">
+        <div className="flex-1 overflow-y-auto no-scrollbar min-w-[300px]">
           {dataset.map((pt, index) => (
             <div key={pt.id} className="flex border-b border-border-default/50 hover:bg-white/5 transition-colors group">
               <div className="w-12 border-r border-border-default/50 flex items-center justify-center text-xs text-text-muted">
@@ -84,6 +85,7 @@ export function DataGrid() {
           ))}
           {/* Empty Space for scrolling */}
           <div className="h-10" />
+        </div>
         </div>
       </div>
     </div>

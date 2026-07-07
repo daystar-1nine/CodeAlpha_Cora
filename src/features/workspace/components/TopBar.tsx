@@ -51,14 +51,23 @@ export function TopBar() {
         <Button 
           variant="ghost" 
           size="icon" 
+          onClick={toggleCommandPalette}
+          className="md:hidden text-text-secondary hover:text-text-primary"
+          aria-label="Open Search"
+        >
+          <Search className="w-5 h-5" />
+        </Button>
+        <Button 
+          variant="ghost" 
+          size="icon" 
           onClick={() => setTheme(theme === "dark" ? "light" : theme === "light" ? "system" : "dark")} 
           className="text-text-secondary hover:text-text-primary"
           aria-label="Toggle Theme"
         >
           {mounted ? (
-            theme === "dark" ? <Moon className="w-4 h-4" /> : theme === "light" ? <Sun className="w-4 h-4" /> : <Monitor className="w-4 h-4" />
+            theme === "dark" ? <Moon className="w-5 h-5" /> : theme === "light" ? <Sun className="w-5 h-5" /> : <Monitor className="w-5 h-5" />
           ) : (
-            <div className="w-4 h-4" />
+            <div className="w-5 h-5" />
           )}
         </Button>
         <Link href="/workspace/portfolio">

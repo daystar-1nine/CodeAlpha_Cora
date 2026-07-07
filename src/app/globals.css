@@ -129,6 +129,9 @@
   --color-elevated: var(--bg-elevated);
   --color-muted: var(--bg-muted);
   
+  --color-black: #000000;
+  --color-white: #ffffff;
+  
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -193,6 +196,11 @@
     background-color: var(--primary);
     color: var(--primary-foreground);
   }
+
+  /* Prevent iOS Auto-Zoom on inputs */
+  input, textarea, select {
+    font-size: 16px;
+  }
 }
 
 /* ── Utility Classes (Reusable Design System) ──────────────── */
@@ -220,5 +228,17 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .touch-pan-y {
+    touch-action: pan-y;
   }
 }

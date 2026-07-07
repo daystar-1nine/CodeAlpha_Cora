@@ -62,7 +62,7 @@ export function MatrixEditor() {
       <div className="flex flex-col items-center justify-center gap-8 w-full max-w-4xl min-h-[400px] bg-void/30 border border-border-default rounded-3xl p-8 shadow-2xl relative">
         
         {store.mode === "matrix" ? (
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex flex-col xl:flex-row items-center gap-8 w-full max-w-full overflow-x-auto no-scrollbar py-4">
             {needsScalar ? (
                <div className="flex flex-col items-center gap-2">
                  <div className="text-text-secondary font-serif italic text-lg">k</div>
@@ -89,7 +89,7 @@ export function MatrixEditor() {
             )}
           </div>
         ) : (
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex flex-col xl:flex-row items-center gap-8 w-full max-w-full overflow-x-auto no-scrollbar py-4">
             <VectorGrid vector={store.vectorU} onChange={handleVectorUChange} label="Vector U" />
             
             {needsV && (

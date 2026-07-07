@@ -34,7 +34,7 @@ export default function LibraryPage() {
       exit={{ opacity: 0 }}
       className="w-full h-full flex flex-col xl:flex-row overflow-hidden"
     >
-      <div className="w-full xl:w-80 h-[30vh] xl:h-full shrink-0 z-20 border-b xl:border-b-0 xl:border-r border-border-default">
+      <div className="w-full xl:w-80 h-auto xl:h-full shrink-0 z-20">
         <LibrarySidebar 
           activeCategory={activeCategory} 
           setActiveCategory={setActiveCategory} 
@@ -43,7 +43,7 @@ export default function LibraryPage() {
         />
       </div>
 
-      <div className="flex-1 h-[70vh] xl:h-full relative z-10 bg-transparent overflow-y-auto no-scrollbar p-8">
+      <div className="flex-1 relative z-10 bg-transparent overflow-y-auto no-scrollbar p-4 md:p-8">
         <div className="max-w-7xl mx-auto">
           {filteredFormulas.length === 0 ? (
             <div className="w-full h-64 flex flex-col items-center justify-center opacity-50">

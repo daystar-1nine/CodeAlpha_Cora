@@ -9,6 +9,7 @@ export function CosmicEnvironment() {
 
   // Volumetric nebula lights
   const colors = ["#8b5cf6", "#3b82f6", "#ec4899"]; // Purple, Blue, Pink
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useFrame(({ clock }) => {
     if (dustRef.current) {
@@ -28,12 +29,12 @@ export function CosmicEnvironment() {
       <pointLight position={[0, -20, -15]} color={colors[2]} intensity={150} distance={100} />
 
       {/* Infinite Starfield (Layered) */}
-      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-      <Stars radius={50} depth={20} count={3000} factor={2} saturation={0.5} fade speed={0.5} />
+      <Stars radius={100} depth={50} count={isMobile ? 1500 : 5000} factor={4} saturation={0} fade speed={1} />
+      <Stars radius={50} depth={20} count={isMobile ? 800 : 3000} factor={2} saturation={0.5} fade speed={0.5} />
 
       {/* Galaxy Dust / Floating Particles */}
       <Sparkles
-        count={200}
+        count={isMobile ? 50 : 200}
         scale={20}
         size={2}
         speed={0.2}
@@ -42,7 +43,7 @@ export function CosmicEnvironment() {
         position={[0, 0, -10]}
       />
       <Sparkles
-        count={200}
+        count={isMobile ? 50 : 200}
         scale={30}
         size={1}
         speed={0.1}
